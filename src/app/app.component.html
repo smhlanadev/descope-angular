@@ -1,4 +1,16 @@
-<h1> {{ title }} </h1>
-<ul>
-  <li *ngFor="let book of listOfBooks">{{ book.title }}</li>
-</ul>
+<div class="container">
+  <h1> {{ title }} </h1>
+  <mat-accordion>
+    <mat-expansion-panel *ngFor="let book of listOfBooks" (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">
+      <mat-expansion-panel-header>
+        <mat-panel-title> {{ book.title }} </mat-panel-title>
+        <mat-panel-description>
+        {{ book.author }}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <p>Genre: {{ book.genre }}</p>
+      <p>Year: {{ book.publicationYear }}</p>
+      <p>ISBN: {{ book.isbn }}</p>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>
