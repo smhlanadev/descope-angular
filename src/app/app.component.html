@@ -1,16 +1,49 @@
 <div class="container">
   <h1> {{ title }} </h1>
-  <mat-accordion>
-    <mat-expansion-panel *ngFor="let book of listOfBooks" (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">
-      <mat-expansion-panel-header>
-        <mat-panel-title> {{ book.title }} </mat-panel-title>
-        <mat-panel-description>
-        {{ book.author }}
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-      <p>Genre: {{ book.genre }}</p>
-      <p>Year: {{ book.publicationYear }}</p>
-      <p>ISBN: {{ book.isbn }}</p>
-    </mat-expansion-panel>
-  </mat-accordion>
+  <div class="split left">
+    <mat-accordion>
+      <mat-expansion-panel *ngFor="let book of listOfBooks" (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">
+        <mat-expansion-panel-header>
+          <mat-panel-title> {{ book.title }} </mat-panel-title>
+          <mat-panel-description>
+          {{ book.author }}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <p>Genre: {{ book.genre }}</p>
+        <p>Year: {{ book.publicationYear }}</p>
+        <p>ISBN: {{ book.isbn }}</p>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+  
+  <div class="split right">
+    <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="title">Title</label>
+        <input type="text" id="title" name="title" formControlName="title">
+      </div>
+  
+      <div>
+        <label for="author">Author</label>
+        <input type="text" id="author" name="author" formControlName="author">
+      </div>
+  
+      <div>
+        <label for="genre">Genre</label>
+        <input type="text" id="genre" name="genre" formControlName="genre">
+      </div>
+  
+      <div>
+        <label for="publicationYear">Publication Year</label>
+        <input type="text" id="publicationYear" name="publicationYear" formControlName="publicationYear">
+      </div>
+  
+      <div>
+        <label for="isbn">ISBN</label>
+        <input type="text" id="isbn" name="isbn" formControlName="isbn">
+      </div>
+
+      <button type="submit" class="add-button" mat-stroked-button>Add Book</button>
+    </form>
+  </div>
 </div>

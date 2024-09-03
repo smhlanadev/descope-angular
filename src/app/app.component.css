@@ -1,3 +1,38 @@
 .container {
     padding: 1rem;
 }
+
+input, select {
+    display: block;
+    width: 100%;
+    padding: .5rem;
+    margin-bottom: 1rem;
+    box-sizing: border-box;
+}
+
+.split {
+    height: 100%;
+    width: 45%;
+    position: fixed;
+    z-index: 1;
+    overflow-x: hidden;
+    padding: 1rem 2rem;
+}
+
+.left {
+  left: 0;
+}
+
+.right {
+  right: 0;
+}
+
+.add-button {
+    font-size: 1rem;
+    border-radius: 0.3rem;
+}
+
+.add-button:hover {
+  color: white;
+  background-color: #42545C;
+}
