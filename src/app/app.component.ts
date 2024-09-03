@@ -4,7 +4,7 @@ import { books } from './data';
 import { CommonModule } from '@angular/common';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { Book } from './book';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
@@ -20,11 +20,11 @@ export class AppComponent implements OnInit {
   listOfBooks: Book[] = books;
   readonly panelOpenState = signal(false);
   bookForm = new FormGroup({
-    title: new FormControl(''),
-    author: new FormControl(''),
-    genre: new FormControl(''),
-    publicationYear: new FormControl(2024),
-    isbn: new FormControl(''),
+    title: new FormControl('', Validators.required),
+    author: new FormControl('', Validators.required),
+    genre: new FormControl('', Validators.required),
+    publicationYear: new FormControl(2024, Validators.required),
+    isbn: new FormControl('', Validators.required),
   });
 
   ngOnInit(): void {
@@ -32,6 +32,13 @@ export class AppComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.bookForm.controls);
+    if (!this.bookForm.valid) {
+      alert('Please provide all the values for the book');
+      return; 
+    }
+
+    const value: Book = this.bookForm.value as Book;
+    books.push(value);
+    this.bookForm.reset();
   }
 }
