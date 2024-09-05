@@ -1,4 +1,12 @@
-<div class="container">
+<descope
+  *ngIf="!user && !isLoggedIn"
+  (success)="onSuccess($event)"
+  (error)="onError($event)"
+  [flowId]="flowId"
+>
+</descope>
+
+<div class="container" *ngIf="user && isLoggedIn">
   <h1> {{ title }} </h1>
   <div class="split left">
     <mat-accordion>
