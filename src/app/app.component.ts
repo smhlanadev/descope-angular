@@ -33,7 +33,7 @@ export class AppComponent implements OnInit {
     console.log(this.listOfBooks);
   }
 
-  onSuccess(e: CustomEvent) {
+  onLoginSuccess(e: CustomEvent) {
   	console.log(e.detail.user.name)
   	console.log(e.detail.user.email)
 
@@ -41,21 +41,29 @@ export class AppComponent implements OnInit {
     this.isLoggedIn = true;
   }
 
-  onError(error: CustomEvent) {
+  onLoginError(error: CustomEvent) {
   	console.log("Error!", error)
 
     this.user = null;
     this.isLoggedIn = false;
   }
 
-  onSubmit() {
+  addBook() {
     if (!this.bookForm.valid) {
       alert('Please provide all the values for the book');
       return; 
     }
 
     const value: Book = this.bookForm.value as Book;
+    value.id = Date.now();
     books.push(value);
     this.bookForm.reset();
+  }
+
+  deleteBook(id: number) {
+    const book: Book | undefined = books.find(x => x.id === id);
+    if (!book) return;
+    
+    books.splice(books.indexOf(book, 1));
   }
 }

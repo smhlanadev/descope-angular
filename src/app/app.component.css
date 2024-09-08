@@ -27,12 +27,12 @@ input, select {
   right: 0;
 }
 
-.add-button {
+.action-button {
     font-size: 1rem;
     border-radius: 0.3rem;
 }
 
-.add-button:hover {
+.action-button:hover {
   color: white;
   background-color: #42545C;
 }
