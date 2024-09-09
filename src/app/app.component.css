@@ -36,3 +36,8 @@ input, select {
   color: white;
   background-color: #42545C;
 }
+
+.descope-container {
+  display: flex;
+  justify-content: center;
+}

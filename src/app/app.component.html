@@ -1,10 +1,12 @@
-<descope
-  *ngIf="!user && !isLoggedIn"
-  (success)="onLoginSuccess($event)"
-  (error)="onLoginError($event)"
-  [flowId]="flowId"
->
-</descope>
+<div class="descope-container">
+  <descope
+    *ngIf="!user && !isLoggedIn"
+    (success)="onLoginSuccess($event)"
+    (error)="onLoginError($event)"
+    [flowId]="flowId"
+  >
+  </descope>
+</div>
 
 <div class="container" *ngIf="user && isLoggedIn">
   <h1> {{ title }} </h1>
