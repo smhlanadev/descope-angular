@@ -8,11 +8,6 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatExpansionModule } from '@angular/material/expansion';
 
-const environment = {
-	descopeProjectId: 'P2gxZATJZwzozEJZcElGJ016NG9q',
-	descopeFlowId: 'sign-up-or-in'
-}
-
 @NgModule({
   declarations: [
     AppComponent
@@ -23,7 +18,7 @@ const environment = {
     ReactiveFormsModule,
     MatExpansionModule,
     DescopeAuthModule.forRoot({
-			projectId: environment.descopeProjectId
+			projectId: 'P2gxZATJZwzozEJZcElGJ016NG9q'
 		})
   ],
   providers: [

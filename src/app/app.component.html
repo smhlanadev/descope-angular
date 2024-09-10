@@ -10,7 +10,7 @@
 
 <div class="container" *ngIf="user && isLoggedIn">
   <h1> {{ title }} </h1>
-  <div class="split left">
+  <div class="split left" *ngIf="hasPermission('list')">
     <mat-accordion>
       <mat-expansion-panel *ngFor="let book of listOfBooks" (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">
         <mat-expansion-panel-header>
@@ -22,12 +22,12 @@
         <p>Genre: {{ book.genre }}</p>
         <p>Year: {{ book.publicationYear }}</p>
         <p>ISBN: {{ book.isbn }}</p>
-        <button class="action-button" mat-stroked-button (click)="deleteBook(book.id)">Delete</button>
+        <button class="action-button" mat-stroked-button (click)="deleteBook(book.id)" [disabled]="!hasPermission('delete')">Delete</button>
       </mat-expansion-panel>
     </mat-accordion>
   </div>
   
-  <div class="split right">
+  <div class="split right" *ngIf="hasPermission('add')">
     <form [formGroup]="bookForm" (ngSubmit)="addBook()">
       <div>
         <label for="title">Title</label>
