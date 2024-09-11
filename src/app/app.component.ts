@@ -3,6 +3,7 @@ import { Book } from './book';
 import { books } from './data';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DescopeAuthService } from '@descope/angular-sdk';
+import { Permissions } from './permissions';
 
 @Component({
   selector: 'app-root',
@@ -24,6 +25,7 @@ export class AppComponent {
   flowId = 'sign-up-or-in';
   user: any;
   isLoggedIn: boolean = false;
+  Permissions = Permissions;
 
   constructor(private authService: DescopeAuthService) {}
 
