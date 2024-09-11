@@ -1,27 +1,41 @@
-# DescopeAngular
+# Add Authentication and RBAC to an Angular App
+Explore the Magic Link and RBAC features of Descope for an Angular application. Create roles, manage access, and enhance the user experience by avoiding password-related issues, while simplifying the authentication process for developers by reducing the complexity of implementing authentication.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.2.
+This project is created using Angular and integrates with the Descope API to create a seamless authentication and authorization flow. The application keeps an inventory of books and has the ability to view the books with their details and also add new books using a form. Clicking on each item expands it and displays more information about the book. This also provides an option to delete a book. 
+## Getting Started
+Here are the things you will need to get this project running:
+### Prerequisites
+- [Node v20](https://nodejs.org/en/download/prebuilt-installer)
+- [Visual Studio Code](https://code.visualstudio.com/)
+- [A Descope Free Forever Account](https://www.descope.com/sign-up)
+- An email account. [You can use a free temporary email service](https://temp-mail.org/en/)
 
-## Development server
+Use a command line interface (cmd, PowerShell, VS Code terminal, etc.) and the Descope developer console, follow the steps below:
+### Step 1. Configure roles and permissions
+Log into the Descope console and configure the roles and permissions as follows:
+| Role | Permissions |
+| ------ | ------ |
+| Admin | list, add, delete |
+| Guest | list |
+### Step 2. Clone or download this repository
+```sh
+git clone https://github.com/smhlanadev/descope-angular.git
+```
+### Step 3. Install the node dependencies
+```sh
+cd descope-angular
+npm install
+```
+### Step 4. Run the application
+```sh
+npm start
+```
+### Step 5. Login
+After successfully compiling, navigate to the URL shown in the terminal. It is usually http://localhost:3000/. This displays the login screen:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+![Login screen](https://i.imgur.com/lQZSgic.png)
 
-## Code scaffolding
+Enter the email address you want to authenticate with and click on **Continue**. You will receive an email with the link. Click on the link, and you will be authenticated and redirected to the application.
+Now that you’re authenticated, you will be able to see the book inventory based on the role configurations:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+![After authentication is successful](https://i.imgur.com/RzXaozX.png)
