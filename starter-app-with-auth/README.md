@@ -38,4 +38,8 @@ After successfully compiling, navigate to the URL shown in the terminal. It is u
 Enter the email address you want to authenticate with and click on **Continue**. You will receive an email with the link. Click on the link, and you will be authenticated and redirected to the application.
 Now that you’re authenticated, you will be able to see the book inventory based on the role configurations:
 
-![After authentication is successful](https://i.imgur.com/RzXaozX.png)
+**Admin Role**
+![Admin log in - After authentication is successful](https://i.imgur.com/9H0FfS6.png)
+
+**Guest Role**
+![Guest log in - After authentication is successful](https://i.imgur.com/MvTSsoo.png)
