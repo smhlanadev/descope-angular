@@ -1,16 +1,17 @@
-import { Component, signal } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { Book } from './book';
 import { books } from './data';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DescopeAuthService } from '@descope/angular-sdk';
 import { Permissions } from './permissions';
+import { combineLatest } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'Book Inventory';
   listOfBooks: Book[] = books;
   readonly panelOpenState = signal(false);
@@ -29,22 +30,38 @@ export class AppComponent {
 
   constructor(private authService: DescopeAuthService) {}
 
-  onLoginSuccess(e: CustomEvent) {
-    this.authService.session$.subscribe((session) => {
-			this.isLoggedIn = session.isAuthenticated;
-		});
-		this.authService.user$.subscribe((descopeUser) => {
-			if (descopeUser.user) {
-				this.user = descopeUser.user;
-        this.user.roles = this.authService.descopeSdk.getJwtRoles(e.detail.sessionJwt, '');
-        this.user.permissions = this.authService.descopeSdk.getJwtPermissions(e.detail.sessionJwt, '');
-			}
-		});
+  ngOnInit(): void {
+    this.login();
+  }
+
+  onLoginSuccess() {
+    this.login();
   }
 
   onLoginError(error: CustomEvent) {
   	console.log("Error!", error)
 
+    this.logout();
+  }
+
+  login() {
+    combineLatest([
+      this.authService.session$,
+      this.authService.user$
+    ]).subscribe(([session, descopeUser]) => {
+      this.isLoggedIn = session.isAuthenticated;
+    
+      if (descopeUser.user) {
+        this.user = descopeUser.user;
+        this.user.roles = this.authService.descopeSdk.getJwtRoles(session.sessionToken!, '');
+        this.user.permissions = this.authService.descopeSdk.getJwtPermissions(session.sessionToken!, '');
+      } else {
+        this.user = null;
+      }
+    });
+  }
+
+  logout() {
     this.user = null;
     this.isLoggedIn = false;
     this.authService.descopeSdk.logout();
@@ -70,6 +87,7 @@ export class AppComponent {
   }
 
   hasPermission(permission: string) { 
-    return this.user.permissions.includes(permission);
+    if (this.user.permissions) return this.user.permissions!.includes(permission);
+    return false;
   }
 }

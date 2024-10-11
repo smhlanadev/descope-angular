@@ -1,7 +1,7 @@
 <div class="descope-container">
   <descope
     *ngIf="!user && !isLoggedIn"
-    (success)="onLoginSuccess($event)"
+    (success)="onLoginSuccess()"
     (error)="onLoginError($event)"
     [flowId]="flowId"
   >
@@ -9,6 +9,7 @@
 </div>
 
 <div class="container" *ngIf="user && isLoggedIn">
+  <button class="action-button" mat-stroked-button (click)="logout()">Logout</button>
   <h1> {{ title }} </h1>
   <div class="split left" *ngIf="hasPermission(Permissions.LIST)">
     <mat-accordion>
