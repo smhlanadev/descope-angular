@@ -57,6 +57,7 @@ export class AppComponent implements OnInit {
         this.user.permissions = this.authService.descopeSdk.getJwtPermissions(session.sessionToken!, '');
       } else {
         this.user = null;
+        this.isLoggedIn = false;
       }
     });
   }
