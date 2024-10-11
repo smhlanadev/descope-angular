@@ -9,7 +9,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { zip } from 'rxjs';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
-import { MatGridListModule } from '@angular/material/grid-list';
 
 export function initializeApp(authService: DescopeAuthService) {
 	return () => zip([authService.refreshSession(), authService.refreshUser()]);
@@ -24,7 +23,6 @@ export function initializeApp(authService: DescopeAuthService) {
     AppRoutingModule,
     ReactiveFormsModule,
     MatExpansionModule,
-    MatGridListModule,
     DescopeAuthModule.forRoot({
 			projectId: 'P2gxZATJZwzozEJZcElGJ016NG9q'
 		})
